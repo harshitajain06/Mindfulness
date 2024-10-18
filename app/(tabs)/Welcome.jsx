@@ -45,7 +45,7 @@ const Welcome = () => {
 
       <View style={styles.buttonWrapper}>
         <LinearGradient colors={['#6DD5FA', '#2980B9']} style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Mood Test')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MoodTest')}>
             <Text style={styles.buttonText}>Mood Test</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -69,7 +69,7 @@ const Welcome = () => {
 
       <View style={styles.buttonWrapper}>
         <LinearGradient colors={['#6DD5FA', '#2980B9']} style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Upload Songs')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('UploadSongs')}>
             <Text style={styles.buttonText}>Upload Songs</Text>
           </TouchableOpacity>
         </LinearGradient>
@@ -77,7 +77,7 @@ const Welcome = () => {
 
       <View style={styles.buttonWrapper}>
         <LinearGradient colors={['#6DD5FA', '#2980B9']} style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Browse Songs')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BrowseSongs')}>
             <Text style={styles.buttonText}>Browse Songs</Text>
           </TouchableOpacity>
         </LinearGradient>

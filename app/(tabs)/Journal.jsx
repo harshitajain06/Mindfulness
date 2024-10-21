@@ -17,6 +17,7 @@ const Journal = () => {
       const journalList = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
+        createdAt: doc.data().createdAt?.toDate(), // Convert Firestore timestamp to JavaScript date
       }));
       setJournals(journalList);
     } catch (error) {
@@ -55,6 +56,13 @@ const Journal = () => {
   const openJournalModal = (journal) => {
     setSelectedJournal(journal); // Set the selected journal
     setModalVisible(true); // Open modal
+  };
+
+  // Function to format the date
+  const formatDate = (date) => {
+    if (!date) return ''; // If date is undefined, return empty string
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+    return date.toLocaleDateString('en-US', options);
   };
 
   return (
@@ -97,6 +105,7 @@ const Journal = () => {
               <Text style={styles.modalTitle}>Journal Entry</Text>
               <ScrollView style={styles.fullJournalContent}>
                 <Text style={styles.journalText}>{selectedJournal.content}</Text>
+                <Text style={styles.journalDate}>{formatDate(selectedJournal.createdAt)}</Text>
               </ScrollView>
               <TouchableOpacity
                 style={styles.closeButton}
@@ -238,38 +247,37 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#333',
   },
+  journalDate: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 10,
+    fontStyle: 'italic',
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '80%',
+    width: '100%',
   },
   modalButton: {
     backgroundColor: '#29A090',
-    padding: 10,
     borderRadius: 10,
-    marginHorizontal: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 4,
+    padding: 10,
+    margin: 5,
+    width: 100,
   },
   cancelButton: {
-    backgroundColor: '#ff6f61',
-    padding: 10,
+    backgroundColor: '#ff6347',
     borderRadius: 10,
-    marginHorizontal: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
-    elevation: 4,
+    padding: 10,
+    margin: 5,
+    width: 100,
   },
   closeButton: {
     backgroundColor: '#29A090',
-    padding: 10,
     borderRadius: 10,
+    padding: 10,
     marginTop: 20,
+    width: 100,
   },
   buttonText: {
     color: 'white',
